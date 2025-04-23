@@ -3,3 +3,4 @@ plotly==5.3.1
 ipywidgets==7.6.5
 voila==0.2.11
 sqlite3
+os
