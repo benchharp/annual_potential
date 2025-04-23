@@ -1,2 +1,0 @@
-# This will run Voilà after the Binder environment is built
-voila app.ipynb --no-browser --port=7860 --ip=0.0.0.0
