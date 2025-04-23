@@ -1,11 +1,10 @@
-name: voila-environment
+name: myenv
 channels:
   - conda-forge
 dependencies:
-  - python=3.9
-  - voila
-  - ipywidgets
   - pandas
-  - matplotlib
-  - seaborn
-  - numpy
+  - plotly
+  - ipywidgets
+  - voila
+  - pip
+
