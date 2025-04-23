@@ -7,5 +7,6 @@ dependencies:
   - voila
   - ipywidgets
   - jupyterlab
+  - plotly
   - pip:
       - voila
