@@ -9,8 +9,7 @@ import sqlite3
 import plotly.graph_objects as go
 import os
 
-notebook_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in globals() else os.getcwd()
-db_path = os.path.join(notebook_dir, "..", "..", "jw_stats.db")
+db_path = "jw_stats.db"
 
 # Connect to the database
 conn = sqlite3.connect(db_path)
