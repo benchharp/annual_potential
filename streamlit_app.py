@@ -89,7 +89,7 @@ def display_table(data):
         header=dict(
             values=list(display_df.columns),
             fill_color='#262730',  # darker header background
-            font=dict(color='white', size=18, family="Arial", bold=True),
+            font=dict(color='white', size=18, family="Arial"),
             align=['center', 'center', 'center', 'center', 'center'],
             height=35  # row height for header
         ),
@@ -114,3 +114,5 @@ st.plotly_chart(plot_growth(filtered_df), use_container_width=True)
 # Show Data Table
 st.subheader("Data Table (Millions)")
 st.plotly_chart(display_table(filtered_df), use_container_width=True)
+
+# %%
