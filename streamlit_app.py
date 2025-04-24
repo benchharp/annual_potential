@@ -7,12 +7,7 @@
 import pandas as pd
 import sqlite3
 import plotly.graph_objects as go
-import ipywidgets as widgets
-from IPython.display import display
 import os
-
-import os
-import sqlite3
 
 notebook_dir = os.path.dirname(os.path.abspath(__file__)) if "__file__" in globals() else os.getcwd()
 db_path = os.path.join(notebook_dir, "..", "..", "jw_stats.db")
@@ -112,22 +107,3 @@ def plot_growth(year_range, highlight_years):
         legend=dict(title='', orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0)
     )
     fig.show()
-
-
-# In[ ]:
-
-
-ui = widgets.VBox([year_slider, highlight_selector])
-out = widgets.interactive_output(
-    plot_growth,
-    {'year_range': year_slider, 'highlight_years': highlight_selector}
-)
-
-display(ui, out)
-
-
-# In[ ]:
-
-
-
-
