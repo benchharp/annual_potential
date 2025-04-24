@@ -34,7 +34,7 @@ df["Publishers"] = clean_column(df["Publishers"])
 df["Studies"] = clean_column(df["Studies"])
 df["Memorial_Attendance"] = clean_column(df["Memorial_Attendance"])
 df["Other_Attendees"] = df["Memorial_Attendance"] - df["Publishers"] - df["Studies"]
-
+df["Year"] = df["Year"].astype(str)
 # Plotting
 def plot_growth():
     categories = ["Publishers", "Studies", "Other_Attendees"]
@@ -68,6 +68,24 @@ def plot_growth():
     )
 
     st.plotly_chart(fig, use_container_width=True)
+
+import plotly.graph_objects as go
+
+def display_table():
+    display_df = df[["Year", "Publishers", "Studies", "Other_Attendees", "Memorial_Attendance"]].round(3)
+    
+    fig = go.Figure(data=[go.Table(
+        header=dict(values=list(display_df.columns),
+                    fill_color='lightgrey',
+                    align=['left', 'center', 'center', 'center', 'center']),
+        cells=dict(values=[display_df[col] for col in display_df.columns],
+                   fill_color='white',
+                   align=['left', 'center', 'center', 'center', 'center']))
+    ])
+
+    st.plotly_chart(fig, use_container_width=True)
+
+display_table()
 
 # Render the dashboard
 st.title("Growth Potential Overview")
