@@ -85,15 +85,19 @@ def display_table(data):
     fig = go.Figure(data=[go.Table(
         header=dict(
             values=list(display_df.columns),
-            fill_color='lightgrey',
+            fill_color='#262730',  # darker header background
+            font=dict(color='white', size=13),
             align=['left', 'center', 'center', 'center', 'center']
         ),
         cells=dict(
             values=[display_df[col] for col in display_df.columns],
-            fill_color='white',
+            fill_color='#1e1e1e',  # match dark mode background
+            font=dict(color='white', size=12),
             align=['left', 'center', 'center', 'center', 'center']
         )
     )])
+
+    fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
     return fig
 
 # --- App Layout ---
