@@ -44,23 +44,6 @@ df["Other_Attendees"] = df["Memorial_Attendance"] - df["Publishers"] - df["Studi
 # Year range and UI
 year_range = [df["Year"].min(), df["Year"].max()]
 
-year_slider = widgets.IntRangeSlider(
-    value=year_range,
-    min=year_range[0],
-    max=year_range[1],
-    step=1,
-    description='Year Range:',
-    continuous_update=False
-)
-
-highlight_selector = widgets.SelectMultiple(
-    options=sorted(df["Year"].unique()),
-    value=(2000, 2024),
-    description='Highlight:',
-    layout=widgets.Layout(width='50%'),
-    style={'description_width': 'initial'}
-)
-
 # Plot function
 def plot_growth(year_range, highlight_years):
     dff = df[(df["Year"] >= year_range[0]) & (df["Year"] <= year_range[1])]
