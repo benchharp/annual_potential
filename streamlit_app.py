@@ -80,20 +80,25 @@ def plot_growth(data):
 
 # --- Table Function ---
 def display_table(data):
+    # Clean header names
+    cleaned_headers = [col.replace('_', ' ').title() for col in data.columns]
+
     display_df = data[["Year", "Publishers", "Studies", "Other_Attendees", "Memorial_Attendance"]].round(1)
 
     fig = go.Figure(data=[go.Table(
         header=dict(
             values=list(display_df.columns),
             fill_color='#262730',  # darker header background
-            font=dict(color='white', size=18),
+            font=dict(color='white', size=18, family="Arial", weight="bold"),
             align=['center', 'center', 'center', 'center', 'center']
+            height=35  # row height for header
         ),
         cells=dict(
             values=[display_df[col] for col in display_df.columns],
             fill_color='#1e1e1e',  # match dark mode background
-            font=dict(color='white', size=16),
+            font=dict(color='white', size=16, family="Arial"),
             align=['center', 'center', 'center', 'center', 'center']
+            height=30  # row height for cells
         )
     )])
 
