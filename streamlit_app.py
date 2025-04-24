@@ -3,15 +3,13 @@
 
 # In[ ]:
 
-
+import streamlit as st
 import pandas as pd
 import sqlite3
 import plotly.graph_objects as go
-import os
-
-db_path = "jw_stats.db"
 
 # Connect to the database
+db_path = "jw_stats.db"
 conn = sqlite3.connect(db_path)
 
 query = """
@@ -37,16 +35,8 @@ df["Studies"] = clean_column(df["Studies"])
 df["Memorial_Attendance"] = clean_column(df["Memorial_Attendance"])
 df["Other_Attendees"] = df["Memorial_Attendance"] - df["Publishers"] - df["Studies"]
 
-
-# In[ ]:
-
-
-# Year range and UI
-year_range = [df["Year"].min(), df["Year"].max()]
-
-# Plot function
-def plot_growth(year_range, highlight_years):
-    dff = df[(df["Year"] >= year_range[0]) & (df["Year"] <= year_range[1])]
+# Plotting
+def plot_growth():
     categories = ["Publishers", "Studies", "Other_Attendees"]
     colors = {
         "Publishers": "#9ccfd8",
@@ -55,29 +45,17 @@ def plot_growth(year_range, highlight_years):
     }
 
     fig = go.Figure()
-    bottom = pd.Series([0]*len(dff), index=dff.index)
+    bottom = pd.Series([0]*len(df), index=df.index)
 
     for cat in categories:
         fig.add_trace(go.Bar(
-            x=dff["Year"],
-            y=dff[cat],
+            x=df["Year"],
+            y=df[cat],
             name=cat.replace('_', ' '),
             marker_color=colors[cat],
-            offsetgroup=0,
             base=bottom
         ))
-        bottom += dff[cat]
-
-    for y in highlight_years:
-        if y in dff["Year"].values:
-            fig.add_vline(
-                x=y,
-                line_width=2,
-                line_dash="dash",
-                line_color="gold",
-                annotation_text=f"{y}",
-                annotation_position="top left"
-            )
+        bottom += df[cat]
 
     fig.update_layout(
         title="Growth Potential: Publishers, Studies & Other Memorial Attendees",
@@ -88,4 +66,10 @@ def plot_growth(year_range, highlight_years):
         height=600,
         legend=dict(title='', orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0)
     )
-    fig.show()
+
+    st.plotly_chart(fig, use_container_width=True)
+
+# Render the dashboard
+st.title("JW Growth Potential Overview")
+plot_growth()
+
