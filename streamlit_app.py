@@ -69,7 +69,10 @@ def plot_growth():
 
     st.plotly_chart(fig, use_container_width=True)
 
+st.subheader("Data Table")
+st.dataframe(df[["Year", "Publishers", "Studies", "Other_Attendees", "Memorial_Attendance"]].round(3))
+
 # Render the dashboard
-st.title("JW Growth Potential Overview")
+st.title("Growth Potential Overview")
 plot_growth()
 
