@@ -86,13 +86,13 @@ def display_table(data):
         header=dict(
             values=list(display_df.columns),
             fill_color='#262730',  # darker header background
-            font=dict(color='white', size=15),
-            align=['left', 'center', 'center', 'center', 'center']
+            font=dict(color='white', size=18),
+            align=['center', 'center', 'center', 'center', 'center']
         ),
         cells=dict(
             values=[display_df[col] for col in display_df.columns],
             fill_color='#1e1e1e',  # match dark mode background
-            font=dict(color='white', size=14),
+            font=dict(color='white', size=16),
             align=['center', 'center', 'center', 'center', 'center']
         )
     )])
