@@ -89,7 +89,7 @@ def display_table(data):
         header=dict(
             values=list(display_df.columns),
             fill_color='#262730',  # darker header background
-            font=dict(color='white', size=18, family="Arial", weight="bold"),
+            font=dict(color='white', size=18, family="Arial", bold=True),
             align=['center', 'center', 'center', 'center', 'center'],
             height=35  # row height for header
         ),
