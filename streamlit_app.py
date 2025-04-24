@@ -69,10 +69,11 @@ def plot_growth():
 
     st.plotly_chart(fig, use_container_width=True)
 
-st.subheader("Data Table")
-st.dataframe(df[["Year", "Publishers", "Studies", "Other_Attendees", "Memorial_Attendance"]].round(3))
-
 # Render the dashboard
 st.title("Growth Potential Overview")
 plot_growth()
 
+st.subheader("Data Table")
+st.dataframe(df[["Year", "Publishers", "Studies", "Other_Attendees", "Memorial_Attendance"]].round(3))
+csv = df.to_csv(index=False).encode('utf-8')
+st.download_button("Download Data as CSV", csv, "jw_stats.csv", "text/csv", key='download-csv')
