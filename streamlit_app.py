@@ -160,15 +160,15 @@ else:
 # --- Bottom Section: Data Table & About Box ---
 #st.subheader("Data & Info")
 
-# Top row with aligned headers
-header_left, header_right = st.columns([2, 1])
+# Aligned headers
+header_left, _, header_right = st.columns([2, 0.1, 1])  # 0.1 = spacer
 with header_left:
     st.markdown("### Data Table (Millions)")
 with header_right:
     st.markdown("### About This Dashboard")
 
-# Content row
-left_col, right_col = st.columns([2, 1])
+# Content with spacer
+left_col, spacer, right_col = st.columns([2, 0.1, 1])
 with left_col:
     st.plotly_chart(display_table(filtered_df), use_container_width=True)
 
