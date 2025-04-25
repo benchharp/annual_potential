@@ -116,7 +116,7 @@ def display_table(data):
             values=[display_df[col] for col in display_df.columns],
             fill_color='#1e1e1e',
             font=dict(color='white', size=16),
-            align=['left'] + ['center']*4,
+            align=['center']*5,
             height=32
         )
     )])
