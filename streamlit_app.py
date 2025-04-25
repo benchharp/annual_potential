@@ -145,8 +145,25 @@ if chart_type == "Stacked Bar":
 else:
     st.plotly_chart(plot_line(filtered_df), use_container_width=True)
 
-st.subheader("Data Table (Millions)")
-st.plotly_chart(display_table(filtered_df), use_container_width=True)
+st.subheader("Data & Info")
+
+left_col, right_col = st.columns([2, 1])  # 2/3 and 1/3 layout
+
+with left_col:
+    st.plotly_chart(display_table(filtered_df), use_container_width=True)
+
+with right_col:
+    st.markdown("### About This Dashboard")
+    st.info("""
+    This dashboard visualizes worldwide growth stats.
+
+    📈 **Stats included**: Publishers, Bible Studies, Memorial Attendance.
+
+    😎 Fun Fact: No dashboards were harmed in the making of this app.
+
+    🧠 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    """)
 
 # --- Footer ---
 st.sidebar.markdown("Made with ❤️ by [Your Name](https://linkedin.com/in/yourprofile)")
