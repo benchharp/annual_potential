@@ -158,7 +158,7 @@ else:
     st.plotly_chart(plot_line(filtered_df), use_container_width=True)
 
 # --- Bottom Section: Data Table & About Box ---
-st.subheader("Data & Info")
+#st.subheader("Data & Info")
 
 # Top row with aligned headers
 header_left, header_right = st.columns([2, 1])
