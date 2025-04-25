@@ -157,15 +157,22 @@ if chart_type == "Stacked Bar":
 else:
     st.plotly_chart(plot_line(filtered_df), use_container_width=True)
 
+# --- Bottom Section: Data Table & About Box ---
 st.subheader("Data & Info")
 
-left_col, right_col = st.columns([2, 1])  # 2/3 and 1/3 layout
+# Top row with aligned headers
+header_left, header_right = st.columns([2, 1])
+with header_left:
+    st.markdown("### Data Table (Millions)")
+with header_right:
+    st.markdown("### About This Dashboard")
 
+# Content row
+left_col, right_col = st.columns([2, 1])
 with left_col:
     st.plotly_chart(display_table(filtered_df), use_container_width=True)
 
 with right_col:
-    st.markdown("### About This Dashboard")
     st.info("""
     This dashboard visualizes worldwide growth stats.
 
@@ -176,9 +183,5 @@ with right_col:
     🧠 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
     Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     """)
-
-# --- Footer ---
-st.sidebar.markdown("Made with ❤️ by [Your Name](https://linkedin.com/in/yourprofile)")
-
 
 # %%
