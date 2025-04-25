@@ -7,7 +7,7 @@ import sqlite3
 import plotly.graph_objects as go
 
 # --- Page Config ---
-st.set_page_config(page_title="JW Growth Dashboard", layout="wide")
+st.set_page_config(page_title="JW Growth Dashboard", layout="wide", initial_sidebar_state="expanded")
 
 # --- Load and Clean Data ---
 db_path = "jw_stats.db"
@@ -38,11 +38,12 @@ df["Other_Attendees"] = df["Memorial_Attendance"] - df["Publishers"] - df["Studi
 df["Year"] = df["Year"].astype(int)
 
 # --- Sidebar: Filter Years and Theme ---
+st.sidebar.header("Filters")
 min_year, max_year = df["Year"].min(), df["Year"].max()
-year_range = st.slider("Select year range", min_year, max_year, (min_year, max_year))
-highlight_years = st.multiselect("Highlight specific years", options=df["Year"].tolist())
-chart_type = st.radio("Select Chart Type", ["Stacked Bar", "Line Chart"])
-theme = st.selectbox("Select Theme", ["Dark", "Light"])
+year_range = st.sidebar.slider("Select year range", min_year, max_year, (min_year, max_year))
+highlight_years = st.sidebar.multiselect("Highlight specific years", options=df["Year"].tolist())
+chart_type = st.sidebar.radio("Select Chart Type", ["Stacked Bar", "Line Chart"])
+theme = st.sidebar.selectbox("Select Theme", ["Dark", "Light"])
 template = 'plotly_dark' if theme == "Dark" else 'plotly_white'
 
 filtered_df = df[(df["Year"] >= year_range[0]) & (df["Year"] <= year_range[1])]
