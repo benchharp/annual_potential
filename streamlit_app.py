@@ -86,9 +86,21 @@ def plot_growth(data):
     return fig
 
 def plot_line(data):
+    colors = {
+        "Publishers": "#9ccfd8",
+        "Studies": "#f6c177",
+        "Other_Attendees": "#eb6f92"
+    }
+
     fig = go.Figure()
     for col in ["Publishers", "Studies", "Other_Attendees"]:
-        fig.add_trace(go.Scatter(x=data["Year"], y=data[col], mode='lines+markers', name=col.replace('_', ' ')))
+        fig.add_trace(go.Scatter(
+            x=data["Year"],
+            y=data[col],
+            mode='lines+markers',
+            name=col.replace('_', ' '),
+            line=dict(color=colors[col])  # Apply color here
+        ))
 
     fig.update_layout(
         title="Trends Over Time",
